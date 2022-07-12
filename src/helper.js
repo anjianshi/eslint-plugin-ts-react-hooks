@@ -13,12 +13,20 @@ exports.initTypeScript = function initTypeScript(context) {
 }
 
 
-exports.isStableKnownHookValueByTS = function isStableKnownHookValueByTS(parserServices, checker, def) {
+exports.isStableKnownHookValueByTS = function isStableKnownHookValueByTS(parserServices, checker, def, callee) {
   const originalNode = parserServices.esTreeNodeToTSNodeMap.get(def.name)
   const nodeType = checker.getTypeAtLocation(originalNode)
   const typeString = checker.typeToString(nodeType)
 
-  if (/^(RefObject|MutableRefObject|Dispatch<SetStateAction|Dispatch)\</.test(typeString)) {
+  if (/^(RefObject<|MutableRefObject<|Dispatch<SetStateAction<|Dispatch<|DispatchWithoutAction)/.test(typeString)) {
     return true
+  }
+
+  // 以 useCallback(xxx, []) useMemo(xxx, []) 的形式（第二个参数是空数组）定义的内容，视为 stable 的
+  if (callee.name === 'useCallback' || callee.name === 'useMemo') {
+    const deps = callee.parent.arguments[1]
+    if (deps && !deps.elements.length) {
+      return true
+    }
   }
 }
