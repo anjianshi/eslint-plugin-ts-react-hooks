@@ -26,7 +26,7 @@ import React, { useState, useReducer, useRef } from 'react
 
 function useCustomHook() {
   const [state3, setState3] = useState(3)
-  return [state3, setState3]
+  return { state3, setState3 } 
 }
 
 function MyComponent() {
@@ -34,7 +34,7 @@ function MyComponent() {
   const [state2, dispatch] = useReducer((state: number, action: number) => state + action, 2)
   const ref = useRef<number|null>(null)
 
-  const [state3, setState3] = useCustomHook()
+  const { state3, setState3 } = useCustomHook()
 
   const callback = useCallback(() => {
     console.log('call')
