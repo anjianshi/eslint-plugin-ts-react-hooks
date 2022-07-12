@@ -231,7 +231,7 @@ module.exports = {
         const {name} = callee;
 
         // [TypeScript Help]
-        if (isStableKnownHookValueByTS(parserServices, checker, def) === true) return true
+        if (isStableKnownHookValueByTS(parserServices, checker, def, callee) === true) return true
         // [End TypeScript Help]
 
         if (name === 'useRef' && id.type === 'Identifier') {
