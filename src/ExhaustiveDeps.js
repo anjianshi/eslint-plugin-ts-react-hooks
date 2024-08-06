@@ -12,6 +12,7 @@
 // Edited from https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/ExhaustiveDeps.js
 // Code wrapped by `[TypeScript Help]` was edited.
 const { initTypeScript, isStableKnownHookValueByTS } = require('./helper')
+const __EXPERIMENTAL__ = false
 
 module.exports = {
   meta: {
