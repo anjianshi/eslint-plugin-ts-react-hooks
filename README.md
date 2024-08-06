@@ -1,32 +1,30 @@
 # eslint-plugin-ts-react-hooks
+
 Use TypeScript to enhance `react-hooks/exhaustive-deps` rule's functional.
 Auto ignore stable items from custom hook.
 
 ## Usage
 
 In ESLint config:
+
 ```js
-{
-  extends: [
-    'plugin:ts-react-hooks/recommended'
-  ],
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      parserOptions: { sourceType: 'module', project: './tsconfig.json' },
-    }
-  ],
-}
+[
+  require('eslint-plugin-ts-react-hooks').configs.recommended,
+  {
+    files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx']
+    parserOptions: { sourceType: 'module', project: './tsconfig.json' },
+  }
+]
 ```
 
-
 ## Example
+
 ```typescript
-import React, { useState, useReducer, useRef } from 'react
+import React, { useCallback, useState, useReducer, useRef } from 'react
 
 function useCustomHook() {
   const [state3, setState3] = useState(3)
-  return { state3, setState3 } 
+  return { state3, setState3 }
 }
 
 function MyComponent() {
