@@ -12,7 +12,6 @@ Object.assign(plugin, {
     recommended: {
       files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx'],
       languageOptions: {
-        parser: '@typescript-eslint/parser',
         parserOptions: { sourceType: 'module' },
       },
       plugins: {
