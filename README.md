@@ -11,7 +11,7 @@ In ESLint config:
 [
   require('eslint-plugin-ts-react-hooks').configs.recommended,
   {
-    files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx']
+    files: ['**/*.{ts,mts,cts,tsx,mtsx,ctsx}']
     parserOptions: { sourceType: 'module', project: './tsconfig.json' },
   }
 ]

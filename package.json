@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-ts-react-hooks",
   "description": "ESLint rules for React Hooks With TypeScript's Help",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/anjianshi/eslint-plugin-ts-react-hooks.git"
@@ -29,7 +29,7 @@
     "eslint": "^9.0.0"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.0.1"
+    "@typescript-eslint/utils": "^8.12.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

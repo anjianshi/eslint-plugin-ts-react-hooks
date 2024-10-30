@@ -10,7 +10,7 @@ Object.assign(plugin, {
   },
   configs: {
     recommended: {
-      files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.tsx'],
+      files: ['**/*.{ts,mts,cts,tsx,mtsx,ctsx}'],
       languageOptions: {
         parserOptions: { sourceType: 'module' },
       },
