@@ -12,7 +12,9 @@ Object.assign(plugin, {
     recommended: {
       files: ['**/*.{ts,mts,cts,tsx,mtsx,ctsx}'],
       languageOptions: {
-        parserOptions: { sourceType: 'module' },
+        parserOptions: {
+          projectService: true,
+        },
       },
       plugins: {
         'ts-react-hooks': plugin,

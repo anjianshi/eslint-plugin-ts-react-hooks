@@ -8,13 +8,7 @@ Auto ignore stable items from custom hook.
 In ESLint config:
 
 ```js
-[
-  require('eslint-plugin-ts-react-hooks').configs.recommended,
-  {
-    files: ['**/*.{ts,mts,cts,tsx,mtsx,ctsx}']
-    parserOptions: { sourceType: 'module', project: './tsconfig.json' },
-  }
-]
+module.exports = [require('eslint-plugin-ts-react-hooks').configs.recommended]
 ```
 
 ## Example
@@ -27,7 +21,7 @@ function useCustomHook() {
   return { state3, setState3 }
 }
 
-function MyComponent() {
+function MyComponent({ value }: { value: number }) {
   const [state, setState] = useState(1)
   const [state2, dispatch] = useReducer((state: number, action: number) => state + action, 2)
   const ref = useRef<number|null>(null)
@@ -39,13 +33,14 @@ function MyComponent() {
   }, [])
 
   useEffect(() => {
+    console.log(value)
     if (typeof ref.current === 'number') {
       setState(ref.current)
       dispatch(ref.current)
       setState3(ref.current)
       callback()
     }
-  }, [callback])      // only 'callback' need put in dependencies
+  }, [value])      // only 'value' need put in dependencies
 
   return <div>content</div>
 }
