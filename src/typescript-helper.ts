@@ -1,24 +1,34 @@
 // Reference:
 // https://blog.scottlogic.com/2015/01/20/typescript-compiler-api.html
-const utils = require('@typescript-eslint/utils')
+import * as utils from '@typescript-eslint/utils'
+import { type Scope } from 'eslint'
+import { type Identifier } from 'estree'
+import { type TypeChecker } from 'typescript'
 
-
-exports.initTypeScript = function initTypeScript(context) {
+export function initTypeScript(context) {
   const parserServices = utils.ESLintUtils.getParserServices(context)
-  const checker = parserServices.program.getTypeChecker()   // TypeScript functional
+  const checker = parserServices.program.getTypeChecker() // TypeScript functional
   return {
     parserServices,
-    checker
+    checker,
   }
 }
 
-
-exports.isStableKnownHookValueByTS = function isStableKnownHookValueByTS(parserServices, checker, def, callee) {
+export function isStableKnownHookValueByTS(
+  parserServices: utils.ParserServicesWithTypeInformation,
+  checker: TypeChecker,
+  def: Scope.Definition,
+  callee: Identifier
+) {
   const originalNode = parserServices.esTreeNodeToTSNodeMap.get(def.name)
   const nodeType = checker.getTypeAtLocation(originalNode)
   const typeString = checker.typeToString(nodeType)
 
-  if (/^(RefObject<|MutableRefObject<|Dispatch<SetStateAction<|Dispatch<|DispatchWithoutAction)/.test(typeString)) {
+  if (
+    /^(RefObject<|MutableRefObject<|Dispatch<SetStateAction<|Dispatch<|DispatchWithoutAction)/.test(
+      typeString
+    )
+  ) {
     return true
   }
 

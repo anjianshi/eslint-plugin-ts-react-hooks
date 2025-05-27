@@ -1,15 +1,23 @@
 {
   "name": "eslint-plugin-ts-react-hooks",
   "description": "ESLint rules for React Hooks With TypeScript's Help",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/anjianshi/eslint-plugin-ts-react-hooks.git"
   },
-  "main": "src/index.js",
+  "scripts": {
+    "watch": "npm run clear && tsc src/*.ts --noCheck --outDir dist --watch",
+    "build": "npm run clear && tsc src/*.ts --noCheck --outDir dist",
+    "clear": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "README.md",
-    "src"
+    "src",
+    "dist"
   ],
   "keywords": [
     "eslint",
@@ -22,7 +30,7 @@
     "url": "https://github.com/anjianshi/eslint-plugin-ts-react-hooks/issues"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=18"
   },
   "homepage": "https://github.com/anjianshi/eslint-plugin-ts-react-hooks",
   "peerDependencies": {
@@ -33,5 +41,17 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "devDependencies": {
+    "@anjianshi/presets-prettier": "^3.0.2",
+    "@anjianshi/presets-typescript": "^3.2.3",
+    "@types/estree": "^1.0.7",
+    "@types/react": "^19.1.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "react": "^19.1.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  },
+  "prettier": "@anjianshi/presets-prettier/prettierrc"
 }

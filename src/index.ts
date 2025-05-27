@@ -1,10 +1,6 @@
-'use strict'
-const ExhaustiveDeps = require('./ExhaustiveDeps')
+import ExhaustiveDeps from './ExhaustiveDeps'
 
-const plugin = {}
-
-// 因为 plugin 内容里引用了 plugin 自己，所以先定义了 plugin 对象保证引用存在，然后再填充内容
-Object.assign(plugin, {
+const plugin = {
   rules: {
     'exhaustive-deps': ExhaustiveDeps,
   },
@@ -17,7 +13,9 @@ Object.assign(plugin, {
         },
       },
       plugins: {
-        'ts-react-hooks': plugin,
+        get 'ts-react-hooks'() {
+          return plugin
+        },
       },
       rules: {
         'react-hooks/exhaustive-deps': 'off',
@@ -25,6 +23,5 @@ Object.assign(plugin, {
       },
     },
   },
-})
-
-module.exports = plugin
+}
+export default plugin

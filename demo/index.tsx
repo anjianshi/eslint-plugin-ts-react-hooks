@@ -1,19 +1,3 @@
-# eslint-plugin-ts-react-hooks
-
-Use TypeScript to enhance `react-hooks/exhaustive-deps` rule's functional.
-Auto ignore stable items from custom hook.
-
-## Usage
-
-In ESLint config:
-
-```js
-module.exports = [require('eslint-plugin-ts-react-hooks').configs.recommended]
-```
-
-## Example
-
-```typescript
 import { useCallback, useState, useReducer, useRef, useEffect } from 'react'
 
 function useCustomHook() {
@@ -44,4 +28,3 @@ export function MyComponent({ value }: { value: number }) {
 
   return <div>content</div>
 }
-```
